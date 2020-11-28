@@ -1,14 +1,12 @@
 <template>
-  <router-view />
+  <div class="main">123123123</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "App",
   components: {},
-
   setup() {
     return {};
   },
