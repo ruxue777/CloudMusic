@@ -2,7 +2,7 @@
   <div class="main">
     <NavigationBar></NavigationBar>
     <div class="swipebox">
-      <Swipe :autoplay="3000" indicator-color="white">
+      <Swipe :autoplay="3000" indicator-color="#f42710">
         <SwipeItem
           :autoplay="autoplay"
           v-for="(image, index) in imgList"
@@ -19,6 +19,7 @@
 import { defineComponent, reactive, ref } from "vue";
 import NavigationBar from "../../components/NavigationBar.vue";
 import { Swipe, SwipeItem, Lazyload } from "vant";
+import axios from "axios";
 
 export default defineComponent({
   components: {
@@ -35,7 +36,14 @@ export default defineComponent({
       "https://i0.hdslb.com/bfs/sycp/creative_img/202011/352cb68348e9055df01e092a34cfb457.jpg@880w_388h_1c_95q",
       "https://i0.hdslb.com/bfs/sycp/creative_img/202011/0072d22f7235f69b962c9fdb5ec937fc.jpg@880w_388h_1c_95q",
     ]);
-    return { autoplay, imgList };
+
+    const result = axios
+      .get("http://localhost:3000/banner?type=1")
+      .then((res) => {
+        console.log(res);
+      });
+
+    return { autoplay, imgList, result };
   },
 });
 </script>
