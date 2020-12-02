@@ -8,7 +8,7 @@
           v-for="(image, index) in imgList"
           :key="index"
         >
-          <img class="swipeImage" :src="image" />
+          <img class="swipeImage" :src="image.pic" />
         </SwipeItem>
       </Swipe>
     </div>
@@ -16,34 +16,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import NavigationBar from "../../components/NavigationBar.vue";
-import { Swipe, SwipeItem, Lazyload } from "vant";
-import axios from "axios";
+import { Swipe, SwipeItem } from "vant";
+import { getBanner } from "./service";
 
 export default defineComponent({
   components: {
     Swipe,
-    Lazyload,
     SwipeItem,
     NavigationBar,
   },
   setup() {
     const autoplay = ref(3000);
-    const imgList = reactive([
-      "http://i0.hdslb.com/bfs/archive/1f0ab4563fe592036dacbd3c8644d321b3f92e06.jpg@880w_388h_1c_95q",
-      "//i0.hdslb.com/bfs/archive/647cfd216fba45085c70494f7243c94c158cdb97.jpg@880w_388h_1c_95q",
-      "https://i0.hdslb.com/bfs/sycp/creative_img/202011/352cb68348e9055df01e092a34cfb457.jpg@880w_388h_1c_95q",
-      "https://i0.hdslb.com/bfs/sycp/creative_img/202011/0072d22f7235f69b962c9fdb5ec937fc.jpg@880w_388h_1c_95q",
-    ]);
+    const imgList = ref([]);
 
-    const result = axios
-      .get("http://localhost:3000/banner?type=1")
-      .then((res) => {
-        console.log(res);
-      });
+    getBanner({ type: 1 }).then((res: any) => {
+      imgList.value = res.banners;
+    });
 
-    return { autoplay, imgList, result };
+    return { autoplay, imgList };
   },
 });
 </script>
