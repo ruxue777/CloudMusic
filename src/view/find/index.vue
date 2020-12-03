@@ -12,6 +12,24 @@
         </SwipeItem>
       </Swipe>
     </div>
+    <div class="selectbox">
+      <div class="selectitem">
+        <img class="itemimg" src="/@/assets/img/recommend.svg" />
+        <span>每日推荐</span>
+      </div>
+      <div class="selectitem">
+        <img class="itemimg" src="/@/assets/img/songlist.svg" />
+        <span>我的歌单</span>
+      </div>
+      <div class="selectitem">
+        <img class="itemimg" src="/@/assets/img/rank.svg" />
+        <span>热歌排名</span>
+      </div>
+      <div class="selectitem">
+        <img class="itemimg" src="/@/assets/img/myfm.svg" />
+        <span>私人FM</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,6 +73,30 @@ export default defineComponent({
     width: 100%;
     height: 2.85rem;
     border-radius: 10px;
+  }
+}
+.selectbox {
+  width: 100%;
+  height: 1.2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .selectitem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .itemimg {
+      width: 0.65rem;
+      height: 0.65rem;
+    }
+
+    span {
+      font-size: 0.05rem;
+      margin-top: 0.05rem;
+      color: #646566;
+    }
   }
 }
 </style>
